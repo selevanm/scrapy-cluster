@@ -144,6 +144,7 @@ SCHEDULER = "crawling.distributed_scheduler.DistributedScheduler"
 ITEM_PIPELINES = {
     'crawling.pipelines.KafkaPipeline': 100,
     'crawling.pipelines.LoggingBeforePipeline': 1,
+    # 'crawling.pipelines.DataPipeline': 300
 }
 
 SPIDER_MIDDLEWARES = {

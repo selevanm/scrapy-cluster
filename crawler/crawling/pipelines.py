@@ -14,6 +14,8 @@ from kafka import KafkaProducer
 from kafka.errors import KafkaTimeoutError
 from crawling.items import RawResponseItem
 from scutils.log_factory import LogFactory
+from sqlalchemy.orm import sessionmaker
+from models import Part, Fitment, db_connect, create_table
 
 
 class LoggingBeforePipeline(object):
@@ -219,3 +221,32 @@ class KafkaPipeline(object):
         self.logger.info("Closing Kafka Pipeline")
         self.producer.flush()
         self.producer.close(timeout=10)
+
+
+class DataPipeline(object):
+    def __init__(self):
+        """
+        Initializes database connection and sessionmaker.
+        Creates deals table.
+        """
+        engine = db_connect()
+        create_table(engine)
+        self.Session = sessionmaker(bind=engine)
+
+    def process_item(self, item, spider):
+        """Save parts in the database.
+        This method is called for every item pipeline component.
+        The item contains the part and an array of fitments for that part
+        """
+        session = self.Session()
+
+        try:
+            session.add(item['part'])
+            session.commit()
+        except:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+
+        return item

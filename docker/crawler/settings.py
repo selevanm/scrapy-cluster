@@ -13,7 +13,7 @@ def str2bool(v):
 # Specify the host, port and password to use when connecting to Redis.
 REDIS_HOST = os.getenv('REDIS_HOST', 'redis')
 REDIS_PORT = int(os.getenv('REDIS_PORT', 6379))
-REDIS_DB = int(os.getenv('REDIS_DB', 0))
+REDIS_DB = int(os.getenv('REDIS_DB', 1))
 REDIS_PASSWORD = os.getenv('REDIS_PASSWORD', None)
 REDIS_SOCKET_TIMEOUT = int(os.getenv('REDIS_SOCKET_TIMEOUT', 10))
 
@@ -151,6 +151,7 @@ SCHEDULER = "crawling.distributed_scheduler.DistributedScheduler"
 ITEM_PIPELINES = {
     'crawling.pipelines.KafkaPipeline': 100,
     'crawling.pipelines.LoggingBeforePipeline': 1,
+    #'crawling.pipelines.DataPipeline': 300
 }
 
 SPIDER_MIDDLEWARES = {
@@ -173,7 +174,7 @@ DOWNLOADER_MIDDLEWARES = {
 }
 
 # Disable the built in logging in production
-LOG_ENABLED = str2bool(os.getenv('LOG_ENABLED', False))
+LOG_ENABLED = str2bool(os.getenv('LOG_ENABLED', True))
 
 # Allow all return codes
 HTTPERROR_ALLOW_ALL = True

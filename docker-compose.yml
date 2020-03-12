@@ -15,7 +15,8 @@ services:
       - zookeeper
     restart: always
   crawler:
-    image: istresearch/scrapy-cluster:crawler-dev
+    #image: istresearch/scrapy-cluster:crawler-dev
+    image: istresearch/scrapy-cluster:dev_docker
     depends_on:
       - kafka
       - redis

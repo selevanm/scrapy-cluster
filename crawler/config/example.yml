@@ -1,9 +1,6 @@
 domains:
-    dmoztools.net:
-        window: 60
-        hits: 60
+    hyundaioemparts.com:
+        window: 10
+        hits: 10
         scale: 1.0
-    wikipedia.org:
-        window: 60
-        hits: 30
-        scale: 0.5
+

@@ -13,7 +13,7 @@ FLASK_PORT = int(os.getenv('FLASK_PORT', 5343))
 # Redis host information
 REDIS_HOST = os.getenv('REDIS_HOST', 'redis')
 REDIS_PORT = int(os.getenv('REDIS_PORT', 6379))
-REDIS_DB = int(os.getenv('REDIS_DB', 0))
+REDIS_DB = int(os.getenv('REDIS_DB', 1))
 REDIS_PASSWORD = os.getenv('REDIS_PASSWORD', None)
 REDIS_SOCKET_TIMEOUT = int(os.getenv('REDIS_SOCKET_TIMEOUT', 10))
 
